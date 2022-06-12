@@ -25,6 +25,7 @@ declare -a packages=(
     "$mirror/pool/main/libx/libxfixes/libxfixes-dev_5.0.3-1_arm64.deb"
     "$mirror/pool/main/libx/libxau/libxau-dev_1.0.8-1_arm64.deb"
     "$mirror/pool/main/libx/libxdmcp/libxdmcp-dev_1.1.2-3_arm64.deb"
+    "$mirror/pool/main/libx/libxkbcommon/libxkbcommon-dev_0.8.0-1ubuntu0.1_arm64.deb"
     "$mirror/pool/main/w/wayland/libwayland-dev_1.16.0-1ubuntu1.1~18.04.3_arm64.deb"
 )
 
@@ -84,3 +85,6 @@ rm libXi.so \
 rm libVk*.so
 
 rm libwayland*.so
+
+# libxkbcommon is resolved at runtime by GLFW, so we only need headers.
+rm libxkbcommon*
