@@ -6,9 +6,10 @@ mirror='http://ports.ubuntu.com'
 rm -rf root/
 mkdir -p root/
 
+# Use https://ubuntu.pkgs.org to search for the latest version of these packages.
 declare -a packages=(
     "$mirror/pool/main/libx/libxkbcommon/libxkbcommon-dev_0.10.0-1_arm64.deb"
-    "$mirror/pool/main/libx/libx11/libx11-6_1.6.9-2ubuntu1.3_arm64.deb"
+    "$mirror/pool/main/libx/libx11/libx11-6_1.6.9-2ubuntu1.2_arm64.deb"
     "$mirror/pool/main/libx/libx11/libx11-dev_1.7.5-1_arm64.deb"
     "$mirror/pool/main/libx/libx11/libx11-xcb-dev_1.6.9-2ubuntu1.3_arm64.deb"
     "$mirror/pool/main/libx/libxcb/libxcb1_1.14-2_arm64.deb"
@@ -23,6 +24,8 @@ declare -a packages=(
     "$mirror/pool/main/x/xorgproto/x11proto-dev_2019.2-1ubuntu1_all.deb"
     "$mirror/pool/main/m/mesa/mesa-common-dev_20.0.8-0ubuntu1~18.04.1_arm64.deb"
     "$mirror/pool/main/w/wayland/libwayland-dev_1.16.0-1ubuntu1.1~18.04.3_arm64.deb"
+    "$mirror/pool/main/a/alsa-lib/libasound2-dev_1.2.2-2.1_arm64.deb"
+    "$mirror/pool/main/a/alsa-lib/libasound2_1.2.2-2.1ubuntu2.5_arm64.deb"
 )
 
 mkdir -p deb/
@@ -53,6 +56,7 @@ rm -rf root/usr/share/bug
 rm -rf root/usr/share/wayland
 rm -rf root/usr/share/pkgconfig
 rm -rf root/usr/share/lintian
+rm -rf root/usr/share/aclocal/
 find root/usr/share/doc -type f -not -name 'copyright' | xargs rm -rf --
 find root/usr/share/doc | grep changelog.Debian.gz | xargs rm --
 
@@ -71,10 +75,12 @@ rm  libX11.so libX11.so.6 libX11.a \
     libXrandr.so libXrandr.a \
     libXrender.so libXrender.a \
     libxkbcommon* \
-    libwayland*
+    libwayland* \
+    libasound.so libasound.so.2
 
 mv libX11.so.6.3.0 libX11.so
 mv libxcb.so.1.1.0 libxcb.so
+mv libasound.so.2.0.0 libasound.so
 
 popd
 
